@@ -1,0 +1,132 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{geometry}
+\usepackage{tikz}
+
+\usetikzlibrary{calc, math}
+
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+
+\begin{document}
+\pagestyle{empty}
+
+\newlength\grid
+\newlength\margin
+\newlength\vmargin
+\newlength\hmargin
+\newlength\headlen
+\newlength\lthick
+
+% settings
+\setlength\grid{5mm}
+\setlength\margin{10mm}
+\setlength\headlen{6mm}
+\setlength\lthick{.5pt}
+
+\newcommand\ncols{38} % number of columns -1
+\newcommand\nrows{55} % number of rows -1
+
+\setlength\hmargin\margin
+\setlength\vmargin\margin
+
+\pgfmathaddtolength\hmargin{(210mm - 2 * \margin - \ncols * \grid) / 2}
+\pgfmathaddtolength\vmargin{(297mm - 2 * \margin - \nrows * \grid - \headlen) / 2}
+
+
+\begin{tikzpicture}[remember picture, overlay]
+  \coordinate (O) at (current page.north west);
+  \coordinate (P) at ($(O) + ({\hmargin + \ncols * \grid}, {-\vmargin + .75 * \grid})$);
+  \coordinate (T) at ($(O) + (\hmargin, {-\vmargin + .75 * \grid})$);
+
+  % title
+  \node[lightgray, anchor = north west, inner sep = 0, outer sep = 0] at (T)
+    {\scshape title \hspace{1mm} \rule{90mm}{\lthick} \hspace{4mm} date \hspace{1mm} \rule{8mm}{\lthick} / \rule{8mm}{\lthick} / \rule{8mm}{\lthick}};
+
+  % page
+  \node[lightgray, anchor = north east, inner sep = 0, outer sep = 0] at (P)
+    {\scshape page \hspace{1mm} \rule{8mm}{\lthick} / \rule{8mm}{\lthick}};
+
+  % dotted paper
+  \foreach \i in {0,1,2,...,\nrows}{
+    \foreach \j in {0,1,2,...,\ncols}{
+      \fill[lightgray!50!gray] (O) ++ ({\hmargin + \j * \grid}, {-(\vmargin + \headlen + \i * \grid)})
+        circle[radius=0.2mm];
+    };
+  };
+
+\end{tikzpicture}
+
+\clearpage
+
+% back of first page
+\begin{tikzpicture}[remember picture, overlay]
+
+  \coordinate (O) at (current page.north west);
+  \coordinate (P) at ($(O) + ({\hmargin + \ncols * \grid}, {-\vmargin + .75 * \grid})$);
+  \coordinate (T) at ($(O) + (\hmargin, {-\vmargin + .75 * \grid})$);
+  
+  % page
+  \node[lightgray, anchor = north east, inner sep = 0, outer sep = 0] at (P)
+    {\scshape page \hspace{1mm} \rule{8mm}{\lthick} / \rule{8mm}{\lthick}};
+
+  % dotted paper
+  \foreach \i in {0,1,2,...,\nrows}{
+    \foreach \j in {0,1,2,...,\ncols}{
+      \fill[lightgray!50!gray] (O) ++ ({\hmargin + \j * \grid}, {-(\vmargin + \headlen + \i * \grid)})
+        circle[radius=0.2mm];
+    };
+  };
+
+\end{tikzpicture}
+
+\clearpage
+
+% paper with without title & date
+\begin{tikzpicture}[remember picture, overlay]
+
+  \coordinate (O) at (current page.north west);
+  \coordinate (P) at ($(O) + ({\hmargin + \ncols * \grid}, {-\vmargin + .75 * \grid})$);
+  \coordinate (T) at ($(O) + (\hmargin, {-\vmargin + .75 * \grid})$);
+  
+  % page
+  \node[lightgray, anchor = north east, inner sep = 0, outer sep = 0] at (P)
+    {\scshape page \hspace{1mm} \rule{8mm}{\lthick} / \rule{8mm}{\lthick}};
+
+  % dotted paper
+  \foreach \i in {0,1,2,...,\nrows}{
+    \foreach \j in {0,1,2,...,\ncols}{
+      \fill[lightgray!50!gray] (O) ++ ({\hmargin + \j * \grid}, {-(\vmargin + \headlen + \i * \grid)})
+        circle[radius=0.2mm];
+    };
+  };
+
+\end{tikzpicture}
+
+\clearpage
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \coordinate (O) at (current page.north west);
+  \coordinate (P) at ($(O) + ({\hmargin + \ncols * \grid}, {-\vmargin + .75 * \grid})$);
+  \coordinate (T) at ($(O) + (\hmargin, {-\vmargin + .75 * \grid})$);
+  
+  % page
+  \node[lightgray, anchor = north east, inner sep = 0, outer sep = 0] at (P)
+    {\scshape page \hspace{1mm} \rule{8mm}{\lthick} / \rule{8mm}{\lthick}};
+
+  % dotted paper
+  \foreach \i in {0,1,2,...,\nrows}{
+    \foreach \j in {0,1,2,...,\ncols}{
+      \fill[lightgray!50!gray] (O) ++ ({\hmargin + \j * \grid}, {-(\vmargin + \headlen + \i * \grid)})
+        circle[radius=0.2mm];
+    };
+  };
+
+\end{tikzpicture}
+
+\end{document}
+
+% vim:ts=2 sw=2 et:
